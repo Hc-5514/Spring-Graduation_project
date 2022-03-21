@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>로그인</title>
+    <link href="/css/Common.css" rel="stylesheet" type="text/css" />
+    <link href="/css/SignIn.css" rel="stylesheet" type="text/css" />
+
+    <!-- favicon -->
+    <link rel="icon" href="/img/styleguide-icon.png" />
+    <link rel="styleguide-icon" href="/img/styleguide-icon.png" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="/SignIn" method="post">
+        <img
+          class="logo_styleguide"
+          src="/img/styleguide.jpg"
+          alt="styleguide_logo"
+        />
+        <input
+          type="text"
+          class="id"
+          name="USER_Id"
+          id="id"
+          placeholder="아이디"
+        />
+        <input
+          type="password"
+          class="password"
+          name="USER_Pw"
+          id="password"
+          placeholder="비밀번호"
+        />
+        <button id="btn_login">로그인</button>
+      </form>
+      <span class="login_input_check" th:if="${param.error}">
+        입력한 계정을 찾을 수 없습니다.
+      </span>
+      <!-- Oauth 소셜로그인 -->
+      <div class="login_facebook">
+        <img class="logo_facebook" src="/img/kakaotalk.jpg" />
+        <a href="/oauth2/authorization/facebook" class="btn_facebook"
+          >Kakaotalk으로 로그인</a
+        >
+      </div>
+      <!-- Oauth 소셜로그인end -->
+      <a href="/SignUp" class="button_signup">계정이 없으신가요? 가입하기</a>
+    </div>
+    <script src="/js/SignIn.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://IP번호:Port번호/DB이름?characterEncoding=UTF-8&serverTimezone=UTC
+    username:
+    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <link href="css/SignUp.css" rel="stylesheet" type="text/css" />
+    <link href="css/SignIn.css" rel="stylesheet" type="text/css" />
+
+    <!-- favicon -->
+    <link rel="icon" href="img/styleguide-icon.png" />
+    <link rel="styleguide-icon" href="img/styleguide-icon.png" />
+  </head>
+  <body>
+    <div class="container">
+      <img
+        class="logo_styleguide"
+        src="/img/styleguide.jpg"
+        alt="styleguide_logo"
+      />
+      <form action="/SignUp" method="post">
+        <input
+          type="text"
+          class="input_signup"
+          name="USER_Id"
+          id="id"
+          placeholder="아이디"
+          required="required"
+          maxlength="20"
+        />
+        <input
+          type="password"
+          class="input_signup"
+          name="USER_Pw"
+          id="password"
+          placeholder="비밀번호"
+          required="required"
+          maxlength="20"
+        />
+        <input
+          type="text"
+          class="input_signup"
+          name="USER_Name"
+          id="name"
+          placeholder="성명"
+          required="required"
+          maxlength="20"
+        />
+        <!--    <input type="text" class="input_signup" name="phone" id="phone" placeholder="전화번호" required="required" maxlength="20"/>-->
+        <button id="btn_signup">가입</button>
+      </form>
+      <span class="email_input_check" th:if="${param.error}">
+        이메일 계정이 이미 존재합니다.
+      </span>
+      <a href="/SignIn" class="button_login">계정이 있으신가요? 로그인</a>
+    </div>
+    <script src="js/SignUp.js"></script>
+  </body>
+</html>
