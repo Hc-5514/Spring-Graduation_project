@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <link href="css/SignUp.css" rel="stylesheet" type="text/css" />
+    <link href="css/SignIn.css" rel="stylesheet" type="text/css" />
+
+    <!-- favicon -->
+    <link rel="icon" href="img/styleguide-icon.png" />
+    <link rel="styleguide-icon" href="img/styleguide-icon.png" />
+  </head>
+
+  <body>
+    <div class="container">
+      <img class="logo_styleguide" src="/img/styleguide.jpg" alt="styleguide_logo" />
+
+      <form th:action="@{/user}" method="POST">
+        <input type="email" class="input_signup" name="email" id="id" placeholder="이메일" required="required" maxlength="20">
+        <input type="password" class="input_signup" name="password" id="password" placeholder="비밀번호" required="required" maxlength="20">
+<!--        <input type="radio" name="auth" value="ROLE_ADMIN,ROLE_USER"> admin-->
+        <input type="hidden" name="auth" value="ROLE_USER">
+        <button id="btn_signup">회원가입</button>
+      </form> <br>
+
+      <a href="/login" class="button_login">계정이 있으신가요? 로그인</a>
+    </div>
+  </body>
+  <script src="js/SignUp.js"></script>
+</html>
