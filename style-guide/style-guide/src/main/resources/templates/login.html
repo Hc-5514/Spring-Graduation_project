@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>로그인</title>
+    <link href="/css/Common.css" rel="stylesheet" type="text/css" />
+    <link href="/css/SignIn.css" rel="stylesheet" type="text/css" />
+
+    <!-- favicon -->
+    <link rel="icon" href="/img/styleguide-icon.png" />
+    <link rel="styleguide-icon" href="/img/styleguide-icon.png" />
+  </head>
+
+  <body>
+    <div class="container">
+      <form action="/login" method="POST">
+<!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+        <img class="logo_styleguide" src="/img/styleguide.jpg" alt="styleguide_logo" />
+        <input type="text" class="id" name="username" id="id" placeholder="아이디">
+        <input type="password" class="password" name="password" id="password" placeholder="비밀번호">
+        <button type="submit" id="btn_login">로그인</button>
+      </form>
+
+<!--      <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">-->
+<!--        <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>-->
+<!--      </div>-->
+
+      <!-- Oauth 소셜로그인 -->
+      <div class="login_facebook">
+        <img class="logo_facebook" src="/img/kakaotalk.jpg" />
+        <a href="/oauth2/authorization/facebook" class="btn_facebook" >Facebook으로 로그인</a>
+      </div>
+      <!-- Oauth 소셜로그인end -->  
+
+      <a href="/signup" class="button_signup">계정이 없으신가요? 가입하기</a>
+    </div>
+
+    <script src="/js/SignIn.js"></script>
+  </body>
+</html>

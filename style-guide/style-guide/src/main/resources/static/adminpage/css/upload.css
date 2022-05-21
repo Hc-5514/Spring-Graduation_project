@@ -1,0 +1,33 @@
+.upload-form { display: -webkit-box;
+display: -ms-flexbox; display: flex;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal; -ms-flex-flow: column wrap;
+ flex-flow: column wrap; width: 80%; margin: 100px auto; padding-bottom: 50px;
+ border-radius: 10px; -webkit-box-shadow: 1px 1px 10px 1px #999; box-shadow: 1px 1px 10px 1px #999; }
+
+.upload-form label {
+display: -webkit-box; display: -ms-flexbox; display: flex;
+ -webkit-box-orient: horizontal; -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start;
+   -ms-flex-pack: start; justify-content: start; margin: 30px; }
+
+.upload-form label input { margin-left: 50px; width: 30%; max-width: 450px; }
+
+.upload-form label select { margin-left: 50px; width: 10%; max-width: 150px; }
+
+.upload-form label textarea { margin-left: 50px; padding: 5px; font-size: 12px; }
+
+.upload-form label.btn-box {
+display: -webkit-box; display: -ms-flexbox; display: flex;
+ -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap;
+  flex-flow: row wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; gap: 100px; }
+
+.upload-form label.btn-box .upload-btn { width: 200px; height: 50px;
+border-radius: 50px; border: none; background-color: #F5A9E1;
+font-size: 16px; color: #fff; -webkit-transition: .2s; transition: .2s; }
+
+.upload-form label.btn-box a { width: 200px; }
+
+.upload-form label.btn-box a .edit-btn {
+width: 100%; height: 50px; border-radius: 50px; border: none;
+background-color: #F5A9E1; font-size: 16px; color: #fff; -webkit-transition: .2s; transition: .2s; }

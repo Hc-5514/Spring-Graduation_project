@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.ul {
+    list-style: none;
+}
+
+.li {
+    float:left;
+    margin-right: 20px;
+}
+.a {
+    text-decoration: none;
+    color: #000;
+}
+body {
+    margin: 0 auto;
+    text-align: center;
+    min-width: 1440px;
+}
+#header {
+    min-width: 1440px;
+    padding: 70px 0; /* 위 아래 padding 줌으로써 높이 생성 */
+    background-color: #FBFBEF;
+    display: flex;
+    flex-direction: column;
+}
+ .header-ui {
+        width: 100%; /* width를 지정해줘야 함 */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        .back-btn {
+            img {
+                transition: .2s;
+            }
+        }
+        .back-btn:hover img {
+            transform: scale(1.1);
+        }
+        .title {
+            font-size: 48px;
+        }
+        .logout {
+            font-weight: 700;
+            font-size: 18px;
+            transition: .2s;
+        }
+        .logout:hover {
+            color: #0058a3;
+            border-bottom: 1px solid #0058a3;
+        }
+    }
+    .header-gnb {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        float:left;
+        width: 80%;
+        margin: 50px auto 0;
+        li {
+
+            font-size: 18px;
+            font-weight: 700;
+            a {
+                transition: .2s;
+            }
+        }
+        li:hover a {
+            color: #fff;
+        }
+    }
+.navbar-nav {
+        width: 100%;
+        text-align: center;
+        > li {
+          float: none;
+          display: inline-block;
+        }
+      }
+#footer {
+    padding: 100px 0; /* 위 아래 padding 줌으로써 footer의 높이 생성 */
+    background-color: #FBFBEF;
+    text-align: center;
+}

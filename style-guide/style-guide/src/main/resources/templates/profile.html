@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <body>
+    <!--프로필셋팅 메인-->
+    <main class="main">
+      <!--프로필셋팅 섹션-->
+      <section class="setting-container">
+        <!--프로필셋팅 아티클-->
+        <article class="setting__content">
+          <!--프로필셋팅 아이디영역-->
+          <div class="content-item__01">
+            <div class="item__username">
+              <h2
+                th:text="${#authentication.getPrincipal().getUserInfo().getCode()}"
+              ></h2>
+            </div>
+          </div>
+          <!--프로필셋팅 아이디영역end-->
+
+          <!--프로필 수정-->
+          <form
+            id="profileUpdate"
+            action="/user/update"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="hidden" name="code" id="code" />
+            <div class="content-item__02">
+              <div class="item__title">패스워드</div>
+              <div class="item__input">
+                <input
+                  class="input_update"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="비밀번호"
+                  required="required"
+                />
+              </div>
+            </div>
+            <div class="content-item__03">
+              <div class="item__title">이름</div>
+              <div class="item__input">
+                <input
+                  class="input_update"
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="이름"
+                  th:value="${#authentication.getPrincipal().getUserInfo().getName()}"
+                  required="required"
+                />
+              </div>
+            </div>
+            <div class="content-item__04">
+              <div class="item__title">이메일</div>
+              <div class="item__input">
+                <input
+                  class="input_update"
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="이메일"
+                  th:value="${#authentication.getPrincipal().getUserInfo().getEmail()}"
+                  readonly="readonly"
+                />
+              </div>
+            </div>
+            <div class="content-item__05">
+              <div class="item__title">전화번호</div>
+              <div class="item__input">
+                <input
+                  class="input_update"
+                  type="text"
+                  name="contact"
+                  id="phone"
+                  placeholder="전화번호"
+                  th:value="${#authentication.getPrincipal().getUserInfo().getContact()}"
+                />
+              </div>
+            </div>
+            <div class="content-item__06">
+              <div class="item__title">주소</div>
+              <div class="item__input">
+                <input
+                  class="input_update"
+                  type="text"
+                  name="address"
+                  id="address"
+                  placeholder="주소"
+                  th:value="${#authentication.getPrincipal().getUserInfo().getAddress()}"
+                />
+              </div>
+            </div>
+            <!--제출버튼-->
+            <div class="content-item__07">
+              <div class="item__input">
+                <button id="btn_update">저장</button>
+              </div>
+            </div>
+
+            <!--제출버튼end-->
+          </form>
+          <!--프로필수정 form end-->
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

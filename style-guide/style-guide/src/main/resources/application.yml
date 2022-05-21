@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://IP:PORT/styleguide?characterEncoding=UTF-8&serverTimezone=UTC
+    username:
+    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true

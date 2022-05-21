@@ -1,0 +1,20 @@
+@charset "UTF-8";
+.member-list { width: 80%; margin: 100px auto; padding: 50px; border-radius: 10px; -webkit-box-shadow: 1px 1px 10px 1px #ccc; box-shadow: 1px 1px 10px 1px #ccc; }
+
+.member-list ul { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: start; }
+
+.member-list ul li { text-align: left; line-height: 40px; /* 세로 중간 */ }
+
+.member-list ul li:nth-of-type(1) { width: 5%; /* 번호 */ }
+
+.member-list ul li:nth-of-type(2) { width: 15%; /* 번호 */ }
+
+.member-list ul li:nth-of-type(3) { width: 15%; /* 거주지 */ }
+
+.member-list ul li:nth-of-type(4) { width: 15%; /* 거주지 */ }
+
+.member-list ul li:nth-of-type(5) { width: 30%; /* 주문 시 요청사항 */ }
+
+.member-list .member-list-title { height: 50px; border-bottom: 1px solid #999; font-size: 18px; font-weight: 700; }
+
+.member-list .member-list-contents { height: 40px; border-bottom: 1px solid #999; }
