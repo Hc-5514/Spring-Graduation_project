@@ -1,30 +1,29 @@
 package com.graduation.styleguide.controller;
 
-import com.graduation.styleguide.dto.UserInfoDto;
+import com.graduation.styleguide.dto.UserSignupDto;
 import com.graduation.styleguide.service.UserService;
-import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
+@RequiredArgsConstructor
 @Controller
-public class UserContoller {
+public class AccountController {
 
     private final UserService userService;
 
-    @Builder
-    public UserContoller(UserService userService) {
-        this.userService = userService;
-    }
-
-    @PostMapping("/user")
-    public String signup(UserInfoDto infoDto) { // 회원 추가
-        userService.save(infoDto);
+    // 회원가입
+    @PostMapping("/signup")
+    public String signup(@Valid UserSignupDto userSignupDto, BindingResult bindingResult) {
+        userService.save(userSignupDto);
         return "redirect:/login";
     }
 

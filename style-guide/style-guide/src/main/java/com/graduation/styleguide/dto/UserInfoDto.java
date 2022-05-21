@@ -1,13 +1,16 @@
 package com.graduation.styleguide.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.graduation.styleguide.domain.UserInfo;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
-@Setter
+@Data
 public class UserInfoDto {
 
-    private String email;
-    private String password;
-    private String auth;
+    private boolean loginUser;
+    private UserInfo userInfo;
+
 }
