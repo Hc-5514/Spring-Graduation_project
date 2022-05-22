@@ -1,8 +1,14 @@
 spring:
   datasource:
+<<<<<<< HEAD
     url: jdbc:mariadb://127.0.0.1:3306/spring?characterEncoding=UTF-8&serverTimezone=UTC
     username: HC-5514
     password: 5514
+=======
+    url: jdbc:mariadb://IP:PORT/styleguide?characterEncoding=UTF-8&serverTimezone=UTC
+    username:
+    password:
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:

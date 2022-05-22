@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+=======
+<html lang="ko" xmlns:th="http://www.w3.org/1999/XSL/Transfo">
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
   <head>
     <meta charset="UTF-8" />
     <title>회원가입</title>
@@ -15,6 +19,7 @@
     <div class="container">
       <img class="logo_styleguide" src="/img/styleguide.jpg" alt="styleguide_logo" />
 
+<<<<<<< HEAD
       <form th:action="@{/user}" method="POST">
         <input type="email" class="input_signup" name="email" id="id" placeholder="이메일" required="required" maxlength="20">
         <input type="password" class="input_signup" name="password" id="password" placeholder="비밀번호" required="required" maxlength="20">
@@ -23,6 +28,20 @@
         <button id="btn_signup">회원가입</button>
       </form> <br>
 
+=======
+      <form th:action="signup" method="POST">
+        <input type="text" class="input_signup" name="userID" id="id" placeholder="아이디" required="required" maxlength="20">
+        <input type="password" class="input_signup" name="password" id="password" placeholder="비밀번호" required="required">
+        <input type="text" class="input_signup" name="name" id="name" placeholder="이름" required="required" />
+        <input type="email" class="input_signup" name="email" id="email" placeholder="이메일 주소" required="required"  maxlength="50"/>
+        <input type="text" class="input_signup" name="contact" id="phone" placeholder="전화번호" required="required" maxlength="11"/>
+<!--        <input type="radio" name="auth" value="ROLE_ADMIN,ROLE_USER"> admin-->
+<!--        <input type="hidden" name="auth" value="ROLE_USER">-->
+        <button id="btn_signup">회원가입</button>
+      </form><br>
+
+      <span class="email_input_check" th:if="${param.error}" > 이메일 계정이 이미 존재합니다. </span>
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
       <a href="/login" class="button_login">계정이 있으신가요? 로그인</a>
     </div>
   </body>

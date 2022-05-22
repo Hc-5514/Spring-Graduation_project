@@ -2,6 +2,10 @@ plugins {
 	id 'org.springframework.boot' version '2.6.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+<<<<<<< HEAD
+=======
+	id 'war'
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
 }
 
 group = 'com.graduation'
@@ -30,6 +34,12 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+<<<<<<< HEAD
+=======
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.2'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+	implementation group: 'org.qlrm', name: 'qlrm', version: '3.0.1'
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
 }
 
 tasks.named('test') {

@@ -4,6 +4,11 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+<<<<<<< HEAD
+=======
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="PLATFORM" />
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/style-guide" />
         <option name="gradleJvm" value="openjdk-17" />

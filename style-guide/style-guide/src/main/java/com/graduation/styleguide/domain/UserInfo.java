@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+<<<<<<< HEAD
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,18 +18,33 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserInfo implements UserDetails {
+=======
+
+import javax.persistence.*;
+
+@Entity(name="user_info")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class UserInfo {
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
 
     @Id
     @Column(name = "code")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long code;
 
+<<<<<<< HEAD
     @Column(name = "email", unique = true)
     private String email;
+=======
+    @Column(name = "id", unique = true)
+    private String userID;
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
 
     @Column(name = "password")
     private String password;
 
+<<<<<<< HEAD
     @Column(name = "auth")
     private String auth;
 
@@ -90,5 +106,44 @@ public class UserInfo implements UserDetails {
     public boolean isEnabled() {
         // 계정이 사용 가능한지 확인하는 로직
         return true; // true -> 사용 가능
+=======
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "auth")
+    private String auth;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "contact")
+    private String contact;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "stylelist_id", unique = true)
+    private String stylelistId;
+
+    @Builder
+    public UserInfo(String userID, String password, String name, String auth, String email, String contact, String address, String stylelistId) {
+        this.userID = userID;
+        this.password = password;
+        this.name = name;
+        this.auth = auth;
+        this.email = email;
+        this.contact = contact;
+        this.address = address;
+        this.stylelistId = stylelistId;
+    }
+
+    // profile 에서 개인정보 수정
+    public void update(String password, String name, String email, String contact, String address){
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.contact = contact;
+        this.address = address;
+>>>>>>> e3f1920be13dbcfb142664a10a3bdb0c798d58c6
     }
 }
