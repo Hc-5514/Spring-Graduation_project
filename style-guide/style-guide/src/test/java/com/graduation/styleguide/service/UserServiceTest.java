@@ -38,6 +38,9 @@ class UserServiceTest {
     private UserRepository userRepository;
 
     @Mock
+    private SubscribeRepository subscribeRepository;
+
+    @Mock
     private UserInfo mock_user;
 
     @Mock
@@ -140,14 +143,19 @@ class UserServiceTest {
     }
 
     @Test
-    public void getUserProfileDto_성공() throws Exception {
+    public void getUserInfoDto_성공() throws Exception {
         //given
-
+        given(userRepository.findById(any())).willReturn(java.util.Optional.ofNullable(mock_user));
+        given(subscribeRepository.findSubscribeByStylelistIdAndUserId(user.getCode(), user.getCode())).willReturn(null);
+        given(subscribeRepository.findSubscribeCountById(user.getCode())).willReturn(null);
+        given(subscribeRepository.findSubscriberCountById(user.getCode())).willReturn(null);
 
         //when
-
+        UserInfoDto userInfoDto = userService.getUserInfoDto(user.getCode(), user.getCode());
 
         //then
+        assertThat(userInfoDto.getUserInfo()).isEqualTo(mock_user);
+        //assertThat(userInfoDto.getus)
 
     }
 }
