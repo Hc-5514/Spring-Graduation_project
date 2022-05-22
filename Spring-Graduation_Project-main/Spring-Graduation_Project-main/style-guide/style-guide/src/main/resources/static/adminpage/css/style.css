@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.gnb {
+    display: flex;
+    flex-flow: row wrap; /* width 값을 지켜주기 위해 */
+    justify-content: center;
+    margin: 0 auto;
+    padding: 50px 0; /* header와 footer 간격 배치 */
+    div {
+        width: 33%;
+        height: 300px;
+        margin: 0 auto;
+        background-color: #999;
+        margin: 20px; /* div 박스 사방으로 20px씩 띄워놓기 */
+        border-radius: 10px;
+        transition: .2s;
+        position: relative;
+        a {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            h3 {
+                font-size: 24px;
+                transition: .3s;
+            }
+        }
+    }
+    div:hover {
+        background-color: #888;
+    }
+    div:hover h3 {
+        color: #fff;
+    }
+    .empty {
+        background-color: #ccc;
+    }
+    .empty:hover {
+        background-color: #bbb;
+    }
+}

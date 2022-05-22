@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://114.199.218.161:3306/styleguide?characterEncoding=UTF-8&serverTimezone=UTC
+    username: HC-5514
+    password: 5514
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
