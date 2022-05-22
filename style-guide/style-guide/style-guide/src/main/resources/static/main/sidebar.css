@@ -1,0 +1,254 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body{
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 229, 241, 0.26);
+    z-index: 1;
+    position: relative;
+}
+
+i{
+    cursor: pointer;
+    color: black;
+}
+
+.navbar{
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 55px;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+}
+
+.navbar .logo,
+.navbar .search,
+.navbar .icons{
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo i{
+    font-size: 24px;
+    margin: 0 0px 0 0px;
+}
+
+.navbar .logo img{
+    width: 100px;
+    cursor: pointer;
+}
+
+.navbar .search{
+    height: 30px;
+}
+
+.navbar .search input{
+    width: 570px;
+    height: 100%;
+    padding-left: 10px;
+    font-size: 16px;
+    border: 2px solid gray;
+    border-radius: 2px;
+    outline: none;
+    background: #ECE0F8;
+    color: black;
+    text-align:center;
+
+}
+
+.navbar .search input:focus{
+    border-color: rgb(32, 32, 223);
+}
+
+.navbar .search .searchbtn{
+    width: 50px;
+    height: 100%;
+    background: rgba(230, 215, 230, 0.26);
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 1px 1px 0;
+}
+
+.navbar .search .searchbtn i{
+    font-size: 22px;
+    color: rgba(255, 255, 255,0.5);
+}
+
+.navbar .icons i{
+    margin-right: 25px;
+    font-size: 25px;
+}
+
+.navbar .icons .notification {
+    position: relative;
+    cursor: pointer;
+}
+
+.navbar .icons .notification span[data-count]:after{
+    width: 18px;
+    height: 18px;
+    position:absolute;
+    right:15px;
+    top:-8px;
+    content: attr(data-count);
+    font-size:14px;
+    padding:2px;
+    border-radius:50%;
+    color: white;
+    background:#d11811;
+    text-align:center;
+  }
+
+.navbar .icons img{
+    width: 35px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* sidebar styling */
+
+@media screen and (max-width:1700px){
+ .sidebar {
+display : none;
+    }
+}
+.sidebar{
+    position: fixed;
+    left: 0px;
+    top: 60px;
+    width: 240px;
+    height: auto;
+    padding-right: 10px;
+    color: rgba(255, 255, 255,0.8);
+}
+
+.sidebar .links{
+    padding-bottom: 15px;
+    border-bottom: 1px solid gray;
+     color: red;
+}
+
+.sidebar .links-2{
+    padding-top: 15px;
+}
+
+.sidebar .links .icon{
+    display: flex;
+    align-items: center;
+    padding: 10px 24px;
+    height: 45px;
+    cursor: pointer;
+
+}
+
+.sidebar .links .icon:hover{
+    background: rgb(87, 82, 82);
+}
+
+.sidebar .links .icon a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.sidebar .links .icon a i{
+    margin-right: 20px;
+    font-size: 22px;
+}
+
+.sidebar .subscription{
+    border-bottom: none;
+}
+
+.sidebar .subscription h4{
+    padding: 10px 24px;
+}
+.content{
+    position: absolute;
+    left: 240px;
+    top: 60px;
+    width: calc(100% - 240px);
+    height: 91vh;
+    background: #181818;
+}
+
+.videos{
+    display: flex;
+    flex-wrap: wrap;
+    margin:  20px 0 0 20px;
+}
+
+.videos .video{
+    width: 250px;
+    height: 240px;
+    margin: 0 8px 30px 8px;
+    cursor: pointer;
+}
+
+.video .thumbnail{
+    width: 100%;
+    height: 144px;
+    position: relative;
+}
+
+.video .thumbnail img{
+    width: 100%;
+    height: 100%;
+}
+
+.video .thumbnail .minit{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 14px;
+    width: auto;
+    height: 20px;
+    padding: 2px 3px;
+    border-radius: 3px;
+    background: #222;
+    color: white;
+}
+
+.video .video-info{
+    display: flex;
+    margin: 10px 0;
+}
+
+.video .video-info .user img{
+    width: 40px;
+    cursor: pointer;
+    margin: 0 10px 0 2px;
+}
+
+.video .video-info .text{
+    display: flex;
+    flex-direction: column;
+    color: rgba(255, 255, 255,0.5);
+}
+
+.video .video-info .text .title{
+    color: white;
+    margin-bottom: 5px;
+}
+
+.video .video-info .text .views::after{
+    content: "•";
+    margin: 0 4px;
+}
+
+

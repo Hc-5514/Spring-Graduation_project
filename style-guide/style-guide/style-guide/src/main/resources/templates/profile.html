@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html  lang="ko"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>style guide </title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="img/styleguide-icon.png" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <!-- Style -->
+  <link rel="stylesheet" href="style/profile.css">
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
+  <link href="/main/sidebar.css" rel="stylesheet" type="text/css" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="style/profile.css" rel="stylesheet" />
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="logo" >
+    <i class="material-icons"></i>
+    <a href="/" ><img src="/img/styleguide.jpg" alt=""></a>
+  </div>
+  <!--    <div class="search">-->
+  <!--        <form action="#" method="post"><input id="tag" name="tag" type="text" class="material-icons" placeholder="검색"></form>-->
+  <!--    </div>-->
+  <div class="icons">
+    <!--    <a href="/post/story"><img src="/img/mypage.png"  alt="마이페이지"></a>-->
+    <a href="/profile"><img src="/img/mypage.png"  alt="마이페이지"></a>
+    <a href="/login"><img src="/img/Login.jpg"  alt="로그인"></a>
+    <div class="notification">
+      <a href="#"><img src="/img/notification.png"  alt="채팅알림"></a>
+      <span data-count="5+"></span>
+    </div>
+
+  </div>
+</nav>
+<!--프로필셋팅 메인-->
+<main class="main">
+  <!--프로필셋팅 섹션-->
+  <section class="setting-container">
+    <!--프로필셋팅 아티클-->
+    <article class="setting__content">
+      <!--프로필셋팅 아이디영역-->
+      <div class="content-item__01">
+        <div class="item__username">
+          <h2
+                  th:text="${#authentication.getPrincipal().getUserInfo().getName()}"
+                  style="display:inline" text-align: center; ></h2>
+          <h3 style="display:inline">님 환영합니다!</h3>
+        </div>
+      </div>
+      <!--프로필셋팅 아이디영역end-->
+
+      <!--프로필 수정-->
+      <form
+              id="profileUpdate"
+              action="/user/update"
+              method="post"
+              enctype="multipart/form-data"
+      >
+        <input type="hidden" name="code" id="code" />
+        <div class="content-item__02">
+          <div class="item__title">패스워드</div>
+          <div class="item__input">
+            <input
+                    class="input_update"
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="비밀번호"
+                    required="required"
+            />
+          </div>
+        </div>
+        <div class="content-item__03">
+          <div class="item__title">이름</div>
+          <div class="item__input">
+            <input
+                    class="input_update"
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="이름"
+                    th:value="${#authentication.getPrincipal().getUserInfo().getName()}"
+                    required="required"
+            />
+          </div>
+        </div>
+        <div class="content-item__04">
+          <div class="item__title">이메일</div>
+          <div class="item__input">
+            <input
+                    class="input_update"
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="이메일"
+                    th:value="${#authentication.getPrincipal().getUserInfo().getEmail()}"
+                    readonly="readonly"
+            />
+          </div>
+        </div>
+        <div class="content-item__05">
+          <div class="item__title">전화번호</div>
+          <div class="item__input">
+            <input
+                    class="input_update"
+                    type="text"
+                    name="contact"
+                    id="phone"
+                    placeholder="전화번호"
+                    th:value="${#authentication.getPrincipal().getUserInfo().getContact()}"
+            />
+          </div>
+        </div>
+        <div class="content-item__06">
+          <div class="item__title">주소</div>
+          <div class="item__input">
+            <input
+                    class="input_update"
+                    type="text"
+                    name="address"
+                    id="address"
+                    placeholder="주소"
+                    th:value="${#authentication.getPrincipal().getUserInfo().getAddress()}"
+            />
+          </div>
+        </div>
+        <!--제출버튼-->
+        <div class="content-item__11">
+          <div class="item__input">
+            <button>변경하기</button>
+          </div>
+        </div>
+
+        <!--제출버튼end-->
+      </form>
+      <div class="content-item__11">
+        <div class="item__input">
+      <button onclick="location.href='admin'">스타일리스트 페이지로 이동하기</button >
+      <button onclick="location.href='AdminRegister'">스타일리스트 신청하기</button >
+        </div>
+      </div>
+
+
+      <!--프로필수정 form end-->
+    </article>
+  </section>
+
+</main>
+<footer class="py-5 bg-dark">
+  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+</footer>
+</body>
+</html>
