@@ -32,10 +32,12 @@ public class Oauth2DetailsService extends DefaultOAuth2UserService {
         UserInfo check_user = userRepository.findByUserID(email);
         if (check_user == null) { //최초 로그인
             UserInfo user = UserInfo.builder()
-                    .email(email)
+                    .userID(email)
                     .password(password)
-                    .contact(null)
                     .name(name)
+                    .email(null)
+                    .contact(null)
+                    .address(null)
                     .build();
             return new PrincipalDetails(userRepository.save(user), user_map); //oauth2로 로그인됬는지 구분할 수 있음.
         } else { //이미 회원가입 되어있음

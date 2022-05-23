@@ -65,13 +65,18 @@ public class UserService {  //implements UserDetailsService
         // loginID 활용하여 currentId가 로그인된 사용자 인지 확인
         UserInfo loginUser = userRepository.findById(sessionId).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 user입니다.");});
         userInfoDto.setLoginUser(loginUser.getUserID() == userInfo.getUserID());
+        System.out.println("");
+        System.out.println("loginUser:" + loginUser);
+        System.out.println("loginUser.getID:" + loginUser.getUserID());
+        System.out.println("userInfo:" + userInfo.getUserID());
+        System.out.println("");
 
         // currentId를 가진 user가 loginId를 가진 user를 구독 했는지 확인
-        userInfoDto.setSubscribe(subscribeRepository.findSubscribeByStylelistIdAndUserId(loginUser.getUserID(), userInfo.getUserID()) != null);
+        //userInfoDto.setSubscribe(subscribeRepository.findSubscribeByStylelistIdAndUserId(loginUser.getUserID(), userInfo.getUserID()) != null);
 
         //currentId를 가진 user의 구독자, 구독중인 스타일리스트 수를 확인한다.
-        userInfoDto.setUserSubscriberCount(subscribeRepository.findSubscriberCountById(userId));
-        userInfoDto.setUserSubscribeCount(subscribeRepository.findSubscribeCountById(userId));
+        //userInfoDto.setUserSubscriberCount(subscribeRepository.findSubscriberCountById(userId));
+        //userInfoDto.setUserSubscribeCount(subscribeRepository.findSubscribeCountById(userId));
 
         return userInfoDto;
     }

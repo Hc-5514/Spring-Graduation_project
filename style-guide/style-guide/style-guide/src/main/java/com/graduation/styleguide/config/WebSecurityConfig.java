@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         , "/js/**", "/main/**", "/salepage/**", "/style/**").permitAll()
                 // 누구나 접근 허용
                 .antMatchers("/signup", "/login", "/", "/saledetails", "/salepage").permitAll() // 누구나 접근 허용
+                .antMatchers("/testprofile").permitAll() // 누구나 접근 허용
                 // USER, ADMIN 접근 허용
                 .antMatchers("/AdminRegister", "/profile").hasRole("USER") // USER, ADMIN만 접근 가능
                 // ADMIN 접근 허용
