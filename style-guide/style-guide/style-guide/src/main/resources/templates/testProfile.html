@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html
+        lang="ko"
+        xmlns:c="http://www.w3.org/1999/XSL/Transform"
+        xmlns:th="http://www.w3.org/1999/xhtml"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -35,6 +40,7 @@
         <div class="state">
           <h4 th:text="${userInfoDto.userInfo.email}"></h4>
           <h4 th:text="${userInfoDto.userInfo.contact}"></h4>
+          <h4 th:text="${}"></h4>
         </div>
       </div>
       <!--유저정보 및 사진등록 구독하기 end-->

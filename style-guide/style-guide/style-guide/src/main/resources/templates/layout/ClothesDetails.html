@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html
+        lang="ko"
+        xmlns:th="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -119,11 +121,11 @@
                         <div class="swiper-wrapper align-items-center">
 
                             <div class="swiper-slide">
-                                <img src="assets/img/portfolio/portfolio-1.jpg" alt="">
+                                <img th:src="@{${stylelistDto.uploadInfo.pic_name}}" alt="">
                             </div>
 
                             <div class="swiper-slide">
-                                <img src="assets/img/portfolio/portfolio-2.jpg" alt="">
+                                <img src="https://styleguidebucket.s3.ap-northeast-2.amazonaws.com/image/test.jpg" alt="">
                             </div>
 
                             <div class="swiper-slide">

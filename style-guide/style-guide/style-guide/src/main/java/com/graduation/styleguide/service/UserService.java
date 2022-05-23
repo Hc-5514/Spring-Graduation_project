@@ -1,15 +1,15 @@
 package com.graduation.styleguide.service;
 
 import com.graduation.styleguide.config.auth.PrincipalDetails;
+import com.graduation.styleguide.domain.UploadInfo;
 import com.graduation.styleguide.domain.UserInfo;
-import com.graduation.styleguide.dto.BusinessInfoDto;
-import com.graduation.styleguide.dto.UserInfoDto;
-import com.graduation.styleguide.dto.UserSignupDto;
-import com.graduation.styleguide.dto.UserUpdateDto;
+import com.graduation.styleguide.dto.*;
 import com.graduation.styleguide.handler.CustomValidationException;
+import com.graduation.styleguide.repository.StylelistRepository;
 import com.graduation.styleguide.repository.SubscribeRepository;
 import com.graduation.styleguide.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,7 +17,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -29,6 +28,7 @@ public class UserService {  //implements UserDetailsService
 
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
+    private final StylelistRepository stylelistRepository;
 
     /**
      * 회원정보 저장
@@ -65,11 +65,6 @@ public class UserService {  //implements UserDetailsService
         // loginID 활용하여 currentId가 로그인된 사용자 인지 확인
         UserInfo loginUser = userRepository.findById(sessionId).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 user입니다.");});
         userInfoDto.setLoginUser(loginUser.getUserID() == userInfo.getUserID());
-        System.out.println("");
-        System.out.println("loginUser:" + loginUser);
-        System.out.println("loginUser.getID:" + loginUser.getUserID());
-        System.out.println("userInfo:" + userInfo.getUserID());
-        System.out.println("");
 
         // currentId를 가진 user가 loginId를 가진 user를 구독 했는지 확인
         //userInfoDto.setSubscribe(subscribeRepository.findSubscribeByStylelistIdAndUserId(loginUser.getUserID(), userInfo.getUserID()) != null);
@@ -79,6 +74,42 @@ public class UserService {  //implements UserDetailsService
         //userInfoDto.setUserSubscribeCount(subscribeRepository.findSubscribeCountById(userId));
 
         return userInfoDto;
+    }
+
+    @Transactional
+    public UserInfoDto getStylelistInfoDto(String stylelistId) {
+
+        UserInfoDto userInfoDto = new UserInfoDto();
+
+        UserInfo userInfo = userRepository.findById(stylelistId).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 스타일리스트입니다.");});
+        userInfoDto.setUserInfo(userInfo);
+
+        return userInfoDto;
+    }
+
+    @Transactional
+    public StylelistDto getClothesInfoDto(long imageId) {
+
+        StylelistDto stylelistDto = new StylelistDto();
+        UploadInfo uploadInfo = stylelistRepository.findById(imageId).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 이미지입니다.");});
+        stylelistDto.setUploadInfo(uploadInfo);
+//        stylelistDto.getUploadInfo().getPic_name()
+        return stylelistDto;
+    }
+
+    @Transactional
+    public List<UploadInfo> getClothesListInfoDto(String stylelistId) {
+
+        System.out.println("stylelistId: " + stylelistId);
+        List<UploadInfo> stylelistDtoList = stylelistRepository.findIdxbyStylelistId(stylelistId);
+
+        System.out.println(stylelistDtoList.get(0).getproduct_name());
+        System.out.println(stylelistDtoList.get(0).getIdx());
+        System.out.println(stylelistDtoList.get(0).getPic_name());
+        System.out.println(stylelistDtoList.get(0).getproduct_count());
+        System.out.println(stylelistDtoList.get(0).getproduct_intro());
+        System.out.println(stylelistDtoList.get(0).getproduct_price());
+        return stylelistDtoList;
     }
 
     @Transactional

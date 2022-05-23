@@ -86,6 +86,7 @@ public class UploadInfo {
     public void setproduct_intro(String product_intro) {
         this.product_intro = product_intro;
     }
+
     @Builder
     public UploadInfo(UserInfo id, String product_name, Long product_price, int product_count, String product_intro, String pic_name){
         this.id = id;
