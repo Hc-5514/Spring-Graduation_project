@@ -79,7 +79,8 @@ public class UserInfo {
         this.address = address;
     }
 
-    public void updateBusinessInfo(String businessNumber, String ceo, String businessName, String businessContact, String businessAddress){
+    public void updateBusinessInfo(String auth, String businessNumber, String ceo, String businessName, String businessContact, String businessAddress){
+        this.auth = auth;
         this.businessNumber = businessNumber;
         this.ceo = ceo;
         this.businessName = businessName;

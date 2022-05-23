@@ -9,14 +9,19 @@ public class MvcConfig implements WebMvcConfigurer {
 
     // 요청 - 뷰 연결
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/admin").setViewName("adminpage/Admin");
-        registry.addViewController("/member").setViewName("adminpage/Member");
-        registry.addViewController("/sales").setViewName("adminpage/Sales");
-        registry.addViewController("/upload").setViewName("adminpage/Upload");
-        registry.addViewController("/saledetails").setViewName("layout/saledetails");
-        registry.addViewController("/salepage").setViewName("layout/salepage");
-        registry.addViewController("/AdminRegister").setViewName("AdminRegister");
-        registry.addViewController("/profile").setViewName("profile");
-        //        registry.addViewController("/admin").setViewName("admin");
+
+        // admin
+        registry.addViewController("/admin").setViewName("admin/Admin");
+        registry.addViewController("/member").setViewName("admin/Member");
+        registry.addViewController("/sales").setViewName("admin/Sales");
+        registry.addViewController("/upload").setViewName("admin/Upload");
+
+        // layout
+        registry.addViewController("/saledetails").setViewName("layout/SaleDetails");
+        registry.addViewController("/salepage").setViewName("layout/SalePage");
+
+        // user
+        registry.addViewController("/AdminRegister").setViewName("user/AdminRegister");
+        registry.addViewController("/profile").setViewName("user/Profile");
     }
 }

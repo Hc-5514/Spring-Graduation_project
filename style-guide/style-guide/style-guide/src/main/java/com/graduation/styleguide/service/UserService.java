@@ -10,11 +10,18 @@ import com.graduation.styleguide.handler.CustomValidationException;
 import com.graduation.styleguide.repository.SubscribeRepository;
 import com.graduation.styleguide.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -91,6 +98,7 @@ public class UserService {  //implements UserDetailsService
         UserInfo userInfo = userRepository.findById(principalDetails.getUserInfo().getUserID()).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 user입니다.");});
 
         userInfo.updateBusinessInfo(
+                "ROLE_ADMIN,ROLE_USER",
                 businessInfoDto.getBusinessNumber(),
                 businessInfoDto.getCeo(),
                 businessInfoDto.getBusinessName(),
@@ -98,7 +106,16 @@ public class UserService {  //implements UserDetailsService
                 businessInfoDto.getBusinessAddress()
         );
 
-        //세션 정보 변경
+        // 세션 정보 변경
         principalDetails.updateUser(userInfo);
+
+        // 로그인 계정 권한 변경
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
+
+        updatedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
+
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
     }
 }

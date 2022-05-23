@@ -25,7 +25,7 @@ public class UploadController {
     @GetMapping("upload")
     public String upload() {
         System.out.println("get access");
-        return "adminpage/upload";
+        return "admin/Upload";
     }
 
     //포스트 업로드 후 프로필 화면으로 이동
