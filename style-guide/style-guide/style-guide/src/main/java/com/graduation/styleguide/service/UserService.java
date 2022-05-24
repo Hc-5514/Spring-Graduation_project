@@ -107,10 +107,24 @@ public class UserService {
     @Transactional
     public List<UploadInfo> getClothesListInfoDto(String stylelistId) {
 
+        System.out.println();
+        System.out.println(stylelistId);
+        System.out.println();
         List<UploadInfo> stylelistDtoList = stylelistRepository.findIdxbyStylelistId(stylelistId);
-
+        System.out.println();
+        System.out.println(stylelistDtoList.get(0).getProduct_name());
+        System.out.println();
         return stylelistDtoList;
     }
+
+    @Transactional
+    public int getGodokListInfoDto(String stylelistId) {
+
+        int Godokcount = subscribeRepository.findSubscriberCountByIdx(stylelistId);
+
+        return Godokcount;
+    }
+
 
     @Transactional
     public void update(UserUpdateDto userUpdateDto, PrincipalDetails principalDetails){
