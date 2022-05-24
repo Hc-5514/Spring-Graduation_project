@@ -9,7 +9,6 @@ import com.graduation.styleguide.repository.StylelistRepository;
 import com.graduation.styleguide.repository.SubscribeRepository;
 import com.graduation.styleguide.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +23,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {  //implements UserDetailsService
+public class UserService {
 
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
@@ -40,12 +39,10 @@ public class UserService {  //implements UserDetailsService
     public UserInfo save(UserSignupDto userSignupDto) {
         if(userRepository.findByUserID(userSignupDto.getUserID()) != null) throw new CustomValidationException("이미 존재하는 아이디입니다.");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        //userInfoDto.setPassword(encoder.encode(userInfoDto.getPassword()));
 
         return userRepository.save(UserInfo.builder()
                 .userID(userSignupDto.getUserID())
                 .password(encoder.encode(userSignupDto.getPassword()))
-                //.password(userInfoDto.getPassword()).build()).getCode();
                 .name(userSignupDto.getName())
                 .auth("ROLE_USER")
                 .email(userSignupDto.getEmail())
@@ -67,11 +64,11 @@ public class UserService {  //implements UserDetailsService
         userInfoDto.setLoginUser(loginUser.getUserID() == userInfo.getUserID());
 
         // currentId를 가진 user가 loginId를 가진 user를 구독 했는지 확인
-        //userInfoDto.setSubscribe(subscribeRepository.findSubscribeByStylelistIdAndUserId(loginUser.getUserID(), userInfo.getUserID()) != null);
+//        userInfoDto.setSubscribe(subscribeRepository.findSubscribeByStylelistIdxAndUserIdx(loginUser.getUserID(), userInfo.getUserID()) != null);
 
         //currentId를 가진 user의 구독자, 구독중인 스타일리스트 수를 확인한다.
-        //userInfoDto.setUserSubscriberCount(subscribeRepository.findSubscriberCountById(userId));
-        //userInfoDto.setUserSubscribeCount(subscribeRepository.findSubscribeCountById(userId));
+//        userInfoDto.setUserSubscriberCount(subscribeRepository.findSubscriberCountByIdx(userId));
+//        userInfoDto.setUserSubscribeCount(subscribeRepository.findSubscribeCountByIdx(userId));
 
         return userInfoDto;
     }
@@ -93,7 +90,7 @@ public class UserService {  //implements UserDetailsService
         StylelistDto stylelistDto = new StylelistDto();
         UploadInfo uploadInfo = stylelistRepository.findById(imageId).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 이미지입니다.");});
         stylelistDto.setUploadInfo(uploadInfo);
-//        stylelistDto.getUploadInfo().getPic_name()
+
         return stylelistDto;
     }
 
@@ -110,16 +107,8 @@ public class UserService {  //implements UserDetailsService
     @Transactional
     public List<UploadInfo> getClothesListInfoDto(String stylelistId) {
 
-        System.out.println("stylelistId: " + stylelistId);
         List<UploadInfo> stylelistDtoList = stylelistRepository.findIdxbyStylelistId(stylelistId);
 
-        System.out.println(stylelistDtoList.get(0).getId());
-        System.out.println(stylelistDtoList.get(0).getProduct_name());
-        System.out.println(stylelistDtoList.get(0).getIdx());
-        System.out.println(stylelistDtoList.get(0).getPic_name());
-        System.out.println(stylelistDtoList.get(0).getProduct_count());
-        System.out.println(stylelistDtoList.get(0).getProduct_intro());
-        System.out.println(stylelistDtoList.get(0).getProduct_price());
         return stylelistDtoList;
     }
 

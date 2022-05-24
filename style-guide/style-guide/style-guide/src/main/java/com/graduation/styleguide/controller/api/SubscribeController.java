@@ -16,15 +16,15 @@ public class SubscribeController {
     private final SubscribeService subscribeService;
 
     @PostMapping("/subscribe/{stylelistId}")
-    public ResponseEntity<?> followUser(@PathVariable String stylelistId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public ResponseEntity<?> subscribe(@PathVariable String stylelistId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         subscribeService.follow(principalDetails.getUserInfo().getUserID(), stylelistId);
-        return new ResponseEntity<>("팔로우 성공", HttpStatus.OK);
+        return new ResponseEntity<>("구독 성공", HttpStatus.OK);
     }
 
     @DeleteMapping("/subscribe/{stylelistId}")
-    public ResponseEntity<?> unFollowUser(@PathVariable String stylelistId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public ResponseEntity<?> unSubscribe(@PathVariable String stylelistId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         subscribeService.unFollow(principalDetails.getUserInfo().getUserID(), stylelistId);
-        return new ResponseEntity<>("팔로우 취소 성공", HttpStatus.OK);
+        return new ResponseEntity<>("구독 취소 성공", HttpStatus.OK);
     }
 
 }

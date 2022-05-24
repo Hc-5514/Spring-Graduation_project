@@ -15,20 +15,20 @@ public class Subscribe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idx;
 
-    @JoinColumn(name = "stylelist_id")
+    @JoinColumn(name = "stylelist_idx")
     @ManyToOne
-    private UserInfo stylelistId;
+    private UserInfo stylelistIdx;
 
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_idx")
     @ManyToOne
-    private UserInfo userId;
+    private UserInfo userIdx;
 
     @Builder
-    public Subscribe(UserInfo stylelistId, UserInfo userId){
-        this.stylelistId = stylelistId;
-        this.userId = userId;
+    public Subscribe(UserInfo stylelistIdx, UserInfo userIdx){
+        this.stylelistIdx = stylelistIdx;
+        this.userIdx = userIdx;
     }
 
 }

@@ -18,6 +18,14 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/styleguide-icon.png" />
 
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <link
       href="assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
@@ -112,14 +120,33 @@
     <section id="portfolio" class="portfolio section-bg">
       <div class="container">
         <div class="section-title">
-          <h2 th:text="|${userInfoDto.userInfo.name}의 옷장|"></h2>
-<!--      스타일리스트 소개 comment 등록 기능 + 출력 -->
+          <h2 th:text="|${stylelistDto.userInfo.name}의 옷장|"></h2>
+          <!--      스타일리스트 소개 comment 등록 기능 + 출력 -->
           <p>
             "옷을 잘 입는 것과 스타일리시 한 것은 다르다"고 말하는 그녀는
             "스타일이란 꾸미든 꾸미지 않든 그 사람이 가지고 있는 개성에서 풍겨져
             나오는 맛과 같은 것"이라고 합니다.
           </p>
-          <button type="submit" class="cta blue">구독하기</button>
+
+          <button
+            class="cta"
+            th:if="!${stylelistDto.loginUser} and !${stylelistDto.subscribe}"
+            th:data="${stylelistDto.userInfo.userID}"
+            th:onclick="|toggleSubscribe(this.getAttribute('data'), this)|"
+          >구독</button>
+          <button
+            class="cta"
+            th:if="!${stylelistDto.loginUser} and ${stylelistDto.subscribe}"
+            th:data="${stylelistDto.userInfo.userID}"
+            th:onclick="|toggleSubscribe(this.getAttribute('data'), this)|"
+          >구독 취소</button>
+          <button
+            class="modi"
+            th:if="${stylelistDto.loginUser}"
+            onclick="popup('.modal-info')"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
         </div>
 
         <div class="row">
@@ -136,7 +163,11 @@
         <div class="row portfolio-container">
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[0].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[0].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[0].product_name}"></h4>
               </div>
@@ -146,9 +177,11 @@
                   th:href="${stylelistDtoList[0].pic_name}"
                   data-gallery="portfolioGallery"
                   title="temp"
-                ><i class="bx bx-plus"></i
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[0].Idx}|" title="More Details"
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[0].Idx}|"
+                  title="More Details"
                   ><i class="bx bx-link"></i
                 ></a>
               </div>
@@ -157,20 +190,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[1].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[1].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[1].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[1].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[1].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[1].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[1].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -178,20 +217,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[2].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[2].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[2].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[2].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[2].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[2].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[2].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -199,20 +244,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[3].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[3].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[3].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[3].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[3].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[3].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[3].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -220,20 +271,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[4].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[4].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[4].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[4].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[4].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[4].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[4].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -241,20 +298,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[5].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[5].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[5].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[5].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[5].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[5].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[5].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -262,20 +325,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[6].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[6].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[6].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[6].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[6].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[6].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[6].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -283,20 +352,26 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[7].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[7].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[7].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[7].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[7].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[7].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[7].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
@@ -304,25 +379,30 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-wrap">
-              <img th:src=@{${stylelistDtoList[8].pic_name}} class="img-fluid" alt="" />
+              <img
+                th:src="@{${stylelistDtoList[8].pic_name}}"
+                class="img-fluid"
+                alt=""
+              />
               <div class="portfolio-info">
                 <h4 th:text="${stylelistDtoList[8].product_name}"></h4>
               </div>
               <div class="portfolio-links">
                 <a
-                        class="portfolio-lightbox"
-                        th:href="${stylelistDtoList[8].pic_name}"
-                        data-gallery="portfolioGallery"
-                        title="temp"
-                ><i class="bx bx-plus"></i
+                  class="portfolio-lightbox"
+                  th:href="${stylelistDtoList[8].pic_name}"
+                  data-gallery="portfolioGallery"
+                  title="temp"
+                  ><i class="bx bx-plus"></i
                 ></a>
-                <a th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[8].Idx}|" title="More Details"
-                ><i class="bx bx-link"></i
+                <a
+                  th:href="|http://localhost:8080/clothesdetails?id=${stylelistDtoList[8].Idx}|"
+                  title="More Details"
+                  ><i class="bx bx-link"></i
                 ></a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -335,13 +415,19 @@
         </p>
       </div>
     </footer>
-    <!-- Bootstrap core JS-->
 
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <!-- Bootstrap core JS-->
+<!--    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>-->
+<!--    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>-->
+
+    <script th:inline="javascript">
+      /*[# sec:authorize="isAuthenticated()"]*/
+      let principalId = /*[[${#authentication.principal.userInfo.userID}]]*/
+      /*[/]*/
+    </script>
 
     <!-- Core theme JS-->
-    <script src="salepage/salepage.js"></script>
     <script src="assets/js/main.js"></script>
+    <!--    <script src="salepage/salepage.js"></script>-->
   </body>
 </html>

@@ -13,15 +13,15 @@ import java.math.BigInteger;
 @Data
 public class SubscribeDto {
 
-    private long id;
+    private long idx;
     private String name;
-    private int followState;
+    private int subscribeState;
     private int loginUser;
 
-    public SubscribeDto(BigInteger id, String name, int followState, int loginUser) {
-        this.id = id.longValue();
+    public SubscribeDto(BigInteger idx, String name, int subscribeState, int loginUser) {
+        this.idx = idx.longValue();
         this.name = name;
-        this.followState = followState;
+        this.subscribeState = subscribeState;
         this.loginUser = loginUser;
     }
 }

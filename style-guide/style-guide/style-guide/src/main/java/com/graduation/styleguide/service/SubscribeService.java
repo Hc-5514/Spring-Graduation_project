@@ -20,29 +20,30 @@ public class SubscribeService {
     private final EntityManager em;
 
     @Transactional
-    public void follow(String stylelistId, String userId) {
-        if(subscribeRepository.findSubscribeByStylelistIdAndUserId(stylelistId, userId) != null) throw new CustomApiException("이미 팔로우 하였습니다.");
-        subscribeRepository.subscribe(stylelistId, userId);
+    public void follow(String userIdx, String stylelistIdx) {
+
+        if(subscribeRepository.findSubscribeByStylelistIdxAndUserIdx(userIdx, stylelistIdx) != 0) throw new CustomApiException("이미 구독하였습니다.");
+        subscribeRepository.subscribe(userIdx, stylelistIdx);
     }
 
     @Transactional
-    public void unFollow(String stylelistId, String userId) {
-        subscribeRepository.unSubscribe(stylelistId, userId);
+    public void unFollow(String userIdx, String stylelistIdx) {
+        subscribeRepository.unSubscribe(userIdx, stylelistIdx);
     }
 
     @Transactional
-    public List<SubscribeDto> getFollower(long stylelistId, long userId) {
+    public List<SubscribeDto> getFollower(long stylelistIdx, long userIdx) {
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.id, u.name, u.profile_img_url, ");
-        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
-        sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
-        sb.append("FROM user u, follow f ");
-        sb.append("WHERE u.id = f.from_user_id AND f.to_user_id = ?");
+        sb.append("SELECT u.idx, u.name, ");
+        sb.append("if ((SELECT 1 FROM subscribe WHERE userIdx = ? AND stylelist_idx = u.id), TRUE, FALSE) AS subscribeState, ");
+        sb.append("if ((?=u.idx), TRUE, FALSE) AS loginUser ");
+        sb.append("FROM user_info u, subscribe f ");
+        sb.append("WHERE u.idx = f.user_idx AND f.stylelist_idx = ?");
         // 쿼리 완성
         Query query = em.createNativeQuery(sb.toString())
-                .setParameter(1, userId)
-                .setParameter(2, userId)
-                .setParameter(3, stylelistId);
+                .setParameter(1, userIdx)
+                .setParameter(2, userIdx)
+                .setParameter(3, stylelistIdx);
 
         //JPA 쿼리 매핑 - DTO에 매핑
         JpaResultMapper result = new JpaResultMapper();
@@ -53,11 +54,11 @@ public class SubscribeService {
     @Transactional
     public List<SubscribeDto> getFollowing(long profileId, long loginId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT u.id, u.name, u.profile_img_url, ");
-        sb.append("if ((SELECT 1 FROM follow WHERE from_user_id = ? AND to_user_id = u.id), TRUE, FALSE) AS followState, ");
+        sb.append("SELECT u.id, u.name, ");
+        sb.append("if ((SELECT 1 FROM subscribe WHERE userIdx = ? AND stylelist_idx = u.id), TRUE, FALSE) AS subscribeState, ");
         sb.append("if ((?=u.id), TRUE, FALSE) AS loginUser ");
-        sb.append("FROM user u, follow f ");
-        sb.append("WHERE u.id = f.to_user_id AND f.from_user_id = ?");
+        sb.append("FROM user_info u, subscribe f ");
+        sb.append("WHERE u.id = f.stylelist_idx AND f.userIdx = ?");
 
         // 쿼리 완성
         Query query = em.createNativeQuery(sb.toString())

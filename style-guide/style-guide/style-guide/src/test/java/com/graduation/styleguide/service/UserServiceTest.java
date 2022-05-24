@@ -144,9 +144,9 @@ class UserServiceTest {
     public void getUserInfoDto_성공() throws Exception {
         //given
         given(userRepository.findById(any())).willReturn(java.util.Optional.ofNullable(mock_user));
-        given(subscribeRepository.findSubscribeByStylelistIdAndUserId(user.getUserID(), user.getUserID())).willReturn(null);
-        given(subscribeRepository.findSubscribeCountById(user.getUserID())).willReturn(0);
-        given(subscribeRepository.findSubscriberCountById(user.getUserID())).willReturn(0);
+        given(subscribeRepository.findSubscribeByStylelistIdxAndUserIdx(user.getUserID(), user.getUserID())).willReturn(null);
+        given(subscribeRepository.findSubscribeCountByIdx(user.getUserID())).willReturn(0);
+        given(subscribeRepository.findSubscriberCountByIdx(user.getUserID())).willReturn(0);
 
         //when
         UserInfoDto userInfoDto = userService.getUserInfoDto(user.getUserID(), user.getUserID());
