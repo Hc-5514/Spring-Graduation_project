@@ -98,17 +98,28 @@ public class UserService {  //implements UserDetailsService
     }
 
     @Transactional
+    public String getStylelistIdDto(long imageId) {
+
+        StylelistDto stylelistDto = new StylelistDto();
+        String id  = stylelistRepository.findStylelistIdbyIdx(imageId);
+
+        return id;
+    }
+
+
+    @Transactional
     public List<UploadInfo> getClothesListInfoDto(String stylelistId) {
 
         System.out.println("stylelistId: " + stylelistId);
         List<UploadInfo> stylelistDtoList = stylelistRepository.findIdxbyStylelistId(stylelistId);
 
-        System.out.println(stylelistDtoList.get(0).getproduct_name());
+        System.out.println(stylelistDtoList.get(0).getId());
+        System.out.println(stylelistDtoList.get(0).getProduct_name());
         System.out.println(stylelistDtoList.get(0).getIdx());
         System.out.println(stylelistDtoList.get(0).getPic_name());
-        System.out.println(stylelistDtoList.get(0).getproduct_count());
-        System.out.println(stylelistDtoList.get(0).getproduct_intro());
-        System.out.println(stylelistDtoList.get(0).getproduct_price());
+        System.out.println(stylelistDtoList.get(0).getProduct_count());
+        System.out.println(stylelistDtoList.get(0).getProduct_intro());
+        System.out.println(stylelistDtoList.get(0).getProduct_price());
         return stylelistDtoList;
     }
 

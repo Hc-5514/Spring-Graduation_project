@@ -11,4 +11,7 @@ public interface StylelistRepository extends JpaRepository<UploadInfo, Long> {
 
     @Query(value = "SELECT * FROM clothes WHERE id = :stylelistId", nativeQuery = true)
     List<UploadInfo> findIdxbyStylelistId(String stylelistId);
+
+    @Query(value = "SELECT id FROM clothes WHERE idx = :Idx", nativeQuery = true)
+    String findStylelistIdbyIdx(Long Idx);
 }
