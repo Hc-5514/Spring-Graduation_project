@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html
-        lang="ko"
-        xmlns:th="http://www.w3.org/1999/xhtml"
->
+<html  lang="ko"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -33,34 +32,15 @@
 
 </head>
 
-<nav class="navbar">
-    <div class="logo">
 
-        <img src="/img/styleguide.jpg" alt="">
-    </div>
-    <div class="search">
-        <input type="text" placeholder="Search">
-        <div class="searchbtn">
-
-        </div>
-
-    </div>
-    <div class="icons">
-        <a href="/post/story"><img src="/img/mypage.png" width="25" height=25 alt="홈"></a>
-        <a href="/post/popular"><img src="/img/Login.jpg" width="25" height=25 alt="탐색"></a>
-        <div class="notification">
-
-            <span data-count="5+"></span>
-        </div>
-
-    </div>
-</nav>
 
 <!----------------side bar----->
 <nav class="navbar">
     <div class="logo" >
         <i class="material-icons"></i>
-        <a href="/" ><img src="/img/styleguide.jpg" alt=""></a>
+        <a href="/home" ><img src="/img/styleguide.jpg" alt=""></a>
+        <!--    <a class="nav-link" sec:authorize="isAnonymous()" th:href="/"><img src="/img/styleguide.jpg"/></a>-->
+        <!--      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="/Home"><img src="/img/styleguide.jpg"/></a>-->
     </div>
     <div class="search">
         <form action="#" method="post"><input id="tag" name="tag" type="text" class="material-icons" placeholder="검색"></form>
@@ -68,12 +48,8 @@
     <div class="icons">
         <!--    <a href="/post/story"><img src="/img/mypage.png"  alt="마이페이지"></a>-->
         <a href="/profile"><img src="/img/mypage.png"  alt="마이페이지"></a>
-        <a href="/login"><img src="/img/Login.jpg"  alt="로그인"></a>
-        <div class="notification">
-            <a href="#"><img src="/img/notification.png"  alt="채팅알림"></a>
-            <span data-count="5+"></span>
-        </div>
-
+        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}"><img src="/img/Login.jpg"/></a>
+        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/login}"><img src="/img/logout.jpg"/></a>
     </div>
 </nav>
 
@@ -84,22 +60,11 @@
                 <span>Home</span></a>
         </div>
     </div>
+
     <div class="links links-2">
-        <div class="icon">
-            <a href="#"><i class="material-icons">구독 목록</i>
-                <span>구독</span></a>
-
-        </div>
-
-    </div>
-    <div class="subscription links">
-        <h4>좋아요 목록</h4>
-        <div class="icon">
-            <a href="#"><i class="material-icons">좋아요</i>
-                <span>좋아요</span></a>
-
-        </div>
-
+        <i class="material-icons" th:each="List : ${subscribeList}">
+            <div th:text="${List}"></div>
+        </i>
     </div>
 </div>
 
@@ -321,7 +286,7 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-
+<script src="/js/comment.js"></script>
 </body>
 
 </html>

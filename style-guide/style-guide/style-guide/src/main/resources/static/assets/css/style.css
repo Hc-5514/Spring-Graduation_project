@@ -357,6 +357,25 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
+button {
+    margin: 20px;
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+    background-color: aliceblue;
+    color: #1e6b7b;
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+
 
 /*--------------------------------------------------------------
 # Breadcrumbs

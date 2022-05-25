@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html  lang="ko"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -46,48 +49,56 @@
             <li><a class="nav-link scrollto" href="member">회원관리</a></li>
             <li><a class="nav-link scrollto" href="sales">매출조회</a></li>
             <li><a class="nav-link scrollto" href="upload">상품등록</a></li>
-
-            <a href="/post/popular"><img src="/img/Login.jpg" width="25" height=25 alt="탐색"></a>
+            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}"><img src="/img/Login.jpg"/></a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/login}"><img src="/img/logout.jpg" whidth="35" height="35"/></a>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
 
 </div>
 <div class="member-list">
-    <ul class="member-list-title">
-        <li class="member-list-title-item">
-            No
-        </li>
-        <li class="member-list-title-item">
-            회원이름
-        </li>
-        <li class="member-list-title-item">
-            배송지
-        </li>
-        <li class="member-list-title-item">
-            최근 주문 목록
-        </li>
-        <li class="member-list-title-item">
-            주문 시 유의사항
-        </li>
-    </ul>
-    <ul class="member-list-contents">
-        <li class="member-list-contents-item">
-            1
-        </li>
-        <li class="member-list-contents-item">
-            김대현
-        </li>
-        <li class="member-list-contents-item">
-            서울시 강남구 한남더힐
-        </li>
-        <li class="member-list-contents-item">
-            셔츠
-        </li>
-        <li class="member-list-contents-item">
-            문앞에 부탁드립니다!
-        </li>
-    </ul>
+    <form class="memberform" action="upload" name="upload" method="post" autocapitalize="on" enctype="multipart/form-data">
+        <br><br><br><br><br>
+
+
+        <tr  th:each="i : ${clothesList}">
+            <label>
+                구독자
+                <input type="text" name="name"
+                       th:value="${i.#authentication.getPrincipal().getUserInfo().getName()}"
+                       placeholder="익명">
+            </label>
+            <br>
+            <label>
+                제품
+                <input type="text" name="product_name"
+                       th:value="${i.product_name}"
+                       placeholder="상품">
+            </label>
+
+            <!--        <td th:text="${i.product_name}"></td>-->
+
+            <label>
+                제품 가격
+                <input type="number" name="product_price"
+                       th:value="${i.product_price}"
+                       placeholder="">
+            </label>
+            <br>
+            <br>
+            <br>
+        </tr>
+        <!--    <label class="btn-box">-->
+        <!--        <button type="submit" class="upload-btn">-->
+        <!--            등록하기-->
+        <!--        </button>-->
+        <!--        <a href="edit.html">-->
+        <!--            <button type="button" class="edit-btn">-->
+        <!--                삭제하기-->
+        <!--            </button>-->
+        <!--        </a>-->
+        <!--    </label>-->
+    </form>
 </div>
 
 

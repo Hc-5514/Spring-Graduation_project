@@ -1,6 +1,7 @@
 package com.graduation.styleguide.service;
 
 import com.graduation.styleguide.config.auth.PrincipalDetails;
+import com.graduation.styleguide.domain.Subscribe;
 import com.graduation.styleguide.domain.UploadInfo;
 import com.graduation.styleguide.domain.UserInfo;
 import com.graduation.styleguide.dto.*;
@@ -108,6 +109,18 @@ public class UserService {
     public List<UploadInfo> getClothesListInfoDto(String stylelistId) {
 
         List<UploadInfo> stylelistDtoList = stylelistRepository.findIdxbyStylelistId(stylelistId);
+
+        return stylelistDtoList;
+    }
+
+    @Transactional
+    public List<String> getSubscribeListInfo(String userId) {
+
+        List<String> stylelistDtoList = subscribeRepository.findSubscribeListbyUserId(userId);
+
+        System.out.println();
+        System.out.println(stylelistDtoList.get(0));
+        System.out.println();
 
         return stylelistDtoList;
     }

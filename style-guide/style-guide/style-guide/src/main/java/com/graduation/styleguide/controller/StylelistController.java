@@ -50,4 +50,19 @@ public class StylelistController {
 
         return "layout/ClothesDetails";
     }
+
+    @GetMapping("/member")
+    public String memeberForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+//        UserInfoDto godokList = userService.getUserInfoDto(id, principalDetails.getUserInfo().getUserID());
+//        model.addAttribute("godokList", godokList);
+
+        List<UploadInfo> clothesList = userService.getClothesListInfoDto(principalDetails.getUserInfo().getUserID());
+        model.addAttribute("clothesList", clothesList);
+        System.out.println("stylelistDtoList: " + clothesList.get(0).getId());
+        System.out.println("stylelistDtoList: " + clothesList.get(0).getProduct_name());
+        System.out.println("stylelistDtoList: " + clothesList.get(0).getProduct_price());
+
+
+        return "admin/Member";
+    }
 }

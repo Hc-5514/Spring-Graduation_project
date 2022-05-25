@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html  lang="ko"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -45,8 +48,8 @@
             <li><a class="nav-link scrollto" href="member">회원관리</a></li>
             <li><a class="nav-link scrollto" href="sales">매출조회</a></li>
             <li><a class="nav-link scrollto" href="upload">상품등록</a></li>
-
-            <a href="/post/popular"><img src="/img/Login.jpg" width="25" height=25 alt="탐색"></a>
+            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}"><img src="/img/Login.jpg"/></a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/login}"><img src="/img/logout.jpg" whidth="35" height="35"~/></a>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

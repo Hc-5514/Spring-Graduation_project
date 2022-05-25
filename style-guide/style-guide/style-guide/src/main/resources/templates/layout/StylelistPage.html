@@ -67,52 +67,37 @@
     </div>
   </nav>
 
-  <!----------------side bar----->
   <nav class="navbar">
-    <div class="logo">
+    <div class="logo" >
       <i class="material-icons"></i>
-      <a href="/"><img src="/img/styleguide.jpg" alt="" /></a>
+      <a href="/home" ><img src="/img/styleguide.jpg" alt=""></a>
+      <!--    <a class="nav-link" sec:authorize="isAnonymous()" th:href="/"><img src="/img/styleguide.jpg"/></a>-->
+      <!--      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="/Home"><img src="/img/styleguide.jpg"/></a>-->
     </div>
     <div class="search">
-      <form action="#" method="post">
-        <input
-          id="tag"
-          name="tag"
-          type="text"
-          class="material-icons"
-          placeholder="검색"
-        />
-      </form>
+      <form action="#" method="post"><input id="tag" name="tag" type="text" class="material-icons" placeholder="검색"></form>
     </div>
     <div class="icons">
       <!--    <a href="/post/story"><img src="/img/mypage.png"  alt="마이페이지"></a>-->
-      <a href="/profile"><img src="/img/mypage.png" alt="마이페이지" /></a>
-      <a href="/login"><img src="/img/Login.jpg" alt="로그인" /></a>
-      <div class="notification">
-        <a href="#"><img src="/img/notification.png" alt="채팅알림" /></a>
-        <span data-count="5+"></span>
-      </div>
+      <a href="/profile"><img src="/img/mypage.png"  alt="마이페이지"></a>
+      <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}"><img src="/img/Login.jpg"/></a>
+      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/login}"><img src="/img/logout.jpg"/></a>
+
+
     </div>
   </nav>
-
   <div class="sidebar">
     <div class="links">
       <div class="icon">
-        <a href="#"><i class="material-icons">home</i> <span>Home</span></a>
+        <a href="#"><i class="material-icons">home</i>
+          <span>Home</span></a>
       </div>
     </div>
+
     <div class="links links-2">
-      <div class="icon">
-        <a href="#"
-          ><i class="material-icons">구독 목록</i> <span>구독</span></a
-        >
-      </div>
-    </div>
-    <div class="subscription links">
-      <h4>좋아요 목록</h4>
-      <div class="icon">
-        <a href="#"><i class="material-icons">좋아요</i> <span>좋아요</span></a>
-      </div>
+      <i class="material-icons" th:each="List : ${subscribeList}">
+        <div th:text="${List}"></div>
+      </i>
     </div>
   </div>
 
@@ -128,26 +113,27 @@
             나오는 맛과 같은 것"이라고 합니다.
           </p>
 
-          <button
-            class="cta"
-            th:if="!${stylelistDto.loginUser} and !${stylelistDto.subscribe}"
-            th:data="${stylelistDto.userInfo.userID}"
-            th:onclick="|toggleSubscribe(this.getAttribute('data'), this)|"
-          >구독</button>
-          <button
-            class="cta"
-            th:if="!${stylelistDto.loginUser} and ${stylelistDto.subscribe}"
-            th:data="${stylelistDto.userInfo.userID}"
-            th:onclick="|toggleSubscribe(this.getAttribute('data'), this)|"
-          >구독 취소</button>
-          <button
-            class="modi"
-            th:if="${stylelistDto.loginUser}"
-            onclick="popup('.modal-info')"
-          >
-            <i class="fas fa-cog"></i>
-          </button>
-        </div>
+          <div class = "button">
+            <button
+
+                    th:if="!${stylelistDto.loginUser} and !${stylelistDto.subscribe}"
+                    th:data="${stylelistDto.userInfo.userID}"
+                    th:onclick="|toggleSubscribe(this.getAttribute('data'), this)|"
+            >구독</button>
+            <button
+
+                    th:if="!${stylelistDto.loginUser} and ${stylelistDto.subscribe}"
+                    th:data="${stylelistDto.userInfo.userID}"
+                    th:onclick="|toggleSubscribe(this.getAttribute('data'), this)|"
+            >구독 취소</button>
+            <button
+                    class="modi"
+                    th:if="${stylelistDto.loginUser}"
+                    onclick="popup('.modal-info')"
+            >
+              <i class="fas fa-cog"></i>
+            </button>
+          </div>
 
         <div class="row">
           <div class="col-lg-12 d-flex justify-content-center">

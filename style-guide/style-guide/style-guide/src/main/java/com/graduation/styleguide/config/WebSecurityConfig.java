@@ -28,9 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         , "/js/**", "/main/**", "/salepage/**", "/style/**").permitAll()
                 // 누구나 접근 허용
                 .antMatchers("/signup", "/login", "/", "/stylelistpage", "/clothesdetails").permitAll()
-                .antMatchers("/testprofile").permitAll()
                 // USER, ADMIN 접근 허용
-                .antMatchers("/AdminRegister", "/profile").hasRole("USER") // USER, ADMIN만 접근 가능
+                .antMatchers("/AdminRegister", "/profile", "/HomeLogin").hasRole("USER") // USER, ADMIN만 접근 가능
                 // ADMIN 접근 허용
                 .antMatchers("/admin", "/member", "/sales", "/upload").hasRole("ADMIN") // ADMIN만 접근 가능
                 // 나머지 요청들은 권한의 종류에 상관 없이 권한이 있어야 접근 가능
@@ -39,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() // 로그인에 관한 설정
                 .loginPage("/login") // 로그인 페이지 링크
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/") // 로그인 성공 후 리다이렉트 주소
+                .defaultSuccessUrl("/home") // 로그인 성공 후 리다이렉트 주소
             .and()
                 .logout() // 로그아웃
                 .logoutSuccessUrl("/login") // 로그아웃 성공시 리다이렉트 주소

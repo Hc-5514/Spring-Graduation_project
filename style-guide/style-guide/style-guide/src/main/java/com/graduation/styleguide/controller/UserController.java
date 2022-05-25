@@ -24,14 +24,6 @@ public class UserController {
 
     private final UserService userService;
 
-    //사용자 프로필 화면으로 이동
-    @GetMapping("/testprofile")
-    public String profile(Model model, @RequestParam String id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        UserInfoDto userInfoDto = userService.getUserInfoDto(id, principalDetails.getUserInfo().getUserID());
-        model.addAttribute("userInfoDto", userInfoDto);
-        return "testProfile";
-    }
-
     //사용자 정보 업데이트
     @PostMapping("/user/update")
     public String updateUser(@Valid UserUpdateDto userUpdateDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal PrincipalDetails principalDetails) {

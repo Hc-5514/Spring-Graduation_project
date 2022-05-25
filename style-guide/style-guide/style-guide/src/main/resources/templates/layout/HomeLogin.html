@@ -2,7 +2,6 @@
 <html  lang="ko"
        xmlns:th="http://www.thymeleaf.org"
        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -26,9 +25,9 @@
 <nav class="navbar">
   <div class="logo" >
     <i class="material-icons"></i>
-        <a href="/home" ><img src="/img/styleguide.jpg" alt=""></a>
-<!--    <a class="nav-link" sec:authorize="isAnonymous()" th:href="/"><img src="/img/styleguide.jpg"/></a>-->
-<!--      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="/Home"><img src="/img/styleguide.jpg"/></a>-->
+    <a href="/home" ><img src="/img/styleguide.jpg" alt=""></a>
+    <!--    <a class="nav-link" sec:authorize="isAnonymous()" th:href="/"><img src="/img/styleguide.jpg"/></a>-->
+    <!--      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="/Home"><img src="/img/styleguide.jpg"/></a>-->
   </div>
   <div class="search">
     <form action="/search" method="post"><input id="tag" name="search" type="text" class="material-icons" placeholder="검색"></form>
@@ -41,24 +40,21 @@
   </div>
 </nav>
 
-<div class="sidebar">
-  <div class="links">
-    <div class="icon">
-      <a href="#"><i class="material-icons">home</i>
-        <span>Home</span></a>
-    </div>
-  </div>
-  <div class="links links-2">
-    <div class="icon">
-      <a href="#"><i class="material-icons">구독 목록</i>
-        <span>구독</span></a>
-
+  <div class="sidebar">
+    <div class="links">
+      <div class="icon">
+        <a href="#"><i class="material-icons">home</i>
+          <span>Home</span></a>
+      </div>
     </div>
 
+    <div class="links links-2">
+      <i class="material-icons" th:each="List : ${subscribeList}">
+        <div th:text="${List}"></div>
+      </i>
+    </div>
   </div>
 
-</div>
-</div>
 <body>
 <!------slide bar ------>
 <div id="slider-wrapper">
@@ -93,7 +89,7 @@
               <!-- Stylelist name-->
               <h5 class="fw-bolder">Park Se Jun</h5>
               <!-- Stylelist 구독자 수 -->
-              구독자: 70명
+              구독자: 700명
               좋아요: 200개
             </div>
           </div>
