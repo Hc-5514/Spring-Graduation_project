@@ -46,7 +46,7 @@
     <nav id="navbar" class="navbar">
         <ul>
             <li><a class="nav-link scrollto " href="admin">홈</a></li>
-            <li><a class="nav-link scrollto" href="member">회원관리</a></li>
+            <li><a class="nav-link scrollto" href="member">상품관리</a></li>
             <li><a class="nav-link scrollto" href="sales">매출조회</a></li>
             <li><a class="nav-link scrollto" href="upload">상품등록</a></li>
             <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}"><img src="/img/Login.jpg"/></a>
@@ -62,12 +62,12 @@
 
 
         <tr  th:each="i : ${clothesList}">
-            <label>
-                구독자
-                <input type="text" name="name"
-                       th:value="${i.#authentication.getPrincipal().getUserInfo().getName()}"
-                       placeholder="익명">
-            </label>
+<!--            <label>-->
+<!--                구독자-->
+<!--                <input type="text" name="name"-->
+<!--                       th:value="${i.#authentication.getPrincipal().getUserInfo().getName()}"-->
+<!--                       placeholder="익명">-->
+<!--            </label>-->
             <br>
             <label>
                 제품

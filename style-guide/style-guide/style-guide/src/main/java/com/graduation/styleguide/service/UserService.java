@@ -126,6 +126,14 @@ public class UserService {
     }
 
     @Transactional
+    public int getSubscriberCount(String stylelistId) {
+
+        int count = subscribeRepository.findSubscriberCountByIdx(stylelistId);
+
+        return count;
+    }
+
+    @Transactional
     public void update(UserUpdateDto userUpdateDto, PrincipalDetails principalDetails){
         UserInfo userInfo = userRepository.findById(principalDetails.getUserInfo().getUserID()).orElseThrow(() -> { return new CustomValidationException("찾을 수 없는 user입니다.");});
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
